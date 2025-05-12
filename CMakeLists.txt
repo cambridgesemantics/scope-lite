@@ -5,7 +5,10 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-cmake_minimum_required( VERSION 3.8 FATAL_ERROR )
+cmake_minimum_required(VERSION 3.5...3.31.7)
+
+# See https://discourse.cmake.org/t/how-to-fix-cmake-minimum-required-deprecation-warning/2487/2
+# for more on setting the minimum required version.
 
 # scope-lite project and version, updated by script/update-version.py:
 
