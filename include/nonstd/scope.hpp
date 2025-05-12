@@ -1004,7 +1004,20 @@ public:
     {
         if ( other.execute_on_reset && std11::is_nothrow_move_constructible<R>::value )
         {
+// see https://github.com/martinmoene/scope-lite/issues/15
+#if defined(__clang__)
+#  pragma clang diagnostic push
+#  pragma clang diagnostic ignored "-Wexceptions"
+#elif defined(__GNUC__) && !defined(__clang__)
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wexceptions"
+#endif
             other.get_deleter()( this->get() );
+#if defined(__clang__)
+#  pragma clang diagnostic pop
+#elif defined(__GNUC__) && !defined(__clang__)
+#  pragma GCC diagnostic pop
+#endif
             other.release();
         }
     }
